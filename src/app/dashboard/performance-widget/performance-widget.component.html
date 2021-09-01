@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <p style="display: flex;">Performance</p>
+    <div style="display: flex;">
+      <p>Filter tasks assigned to</p>
+      <select style="height: 25px; margin: 12px 10px;" #dropdown (change)="selectedUser = dropdown.value">
+        <option *ngFor="let username of userNames" [value]="username">{{username}}</option>
+      </select>
+    </div>
+  </div>
+  <table width="100%">
+    <tr>
+      <td class="column bold">Task</td>
+      <td class="column bold">Status</td>
+    </tr>
+    <tr *ngFor="let task of (taskList | filterName: selectedUser); let i = index" [ngStyle]="{'background-color': i%2 === 0 ? 'grey' : 'white'}">
+      <td class="column">{{task.taskName}}</td>
+      <td class="column">{{task.status}}</td>
+    </tr>
+  </table>
+</div>  
